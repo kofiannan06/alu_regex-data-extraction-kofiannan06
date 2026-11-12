@@ -1,0 +1,206 @@
+:root {
+    /* Define the typography and palette shared by the form and results. */
+    font-family: "Atkinson Hyperlegible Next", system-ui, sans-serif;
+    color: #1b2340; /* Use dark ink for body text. */
+    background: #f4f6fc; /* Separate the white panels from the page. */
+    --accent: #3047b5; /* Use indigo for the primary action and links. */
+    --border: #d7ddec; /* Outline cards and controls consistently. */
+    --muted: #4e5975; /* Keep secondary text readable. */
+}
+
+* {
+    box-sizing: border-box; /* Include padding and borders in element widths. */
+}
+
+body {
+    margin: 0; /* Let the workspace control the page spacing. */
+}
+
+.workspace {
+    max-width: 72rem; /* Keep the workspace readable on wide displays. */
+    margin-inline: auto; /* Center the page horizontally. */
+    padding: clamp(1.25rem, 5vw, 3.5rem); /* Adapt the page margins to the screen. */
+}
+
+.intro {
+    padding-block: clamp(1.5rem, 4vw, 3.5rem) 2rem; /* Separate the title from the form. */
+}
+
+.course {
+    display: flex; /* Place the regex symbol beside the course label. */
+    align-items: center; /* Align the symbol and label vertically. */
+    gap: 0.65rem; /* Give the label space from its symbol. */
+    margin: 0 0 1rem; /* Separate the course line from the heading. */
+    color: var(--accent); /* Link the course line visually to the primary action. */
+    font-size: 0.875rem; /* Keep the course identifier subordinate to the title. */
+    font-weight: 700; /* Make the small label readable. */
+}
+
+.course span {
+    padding: 0.45rem 0.6rem; /* Frame the regex symbol. */
+    border-radius: 0.55rem; /* Round the symbol background. */
+    background: #e3e9ff; /* Distinguish the symbol from the page. */
+    font-family: "IBM Plex Mono", ui-monospace, monospace; /* Render the expression in a code face. */
+}
+
+h1 {
+    margin: 0; /* Let the surrounding text control the title spacing. */
+    font-size: clamp(2.25rem, 5.5vw, 4rem); /* Keep the title prominent on any viewport. */
+    line-height: 1.08; /* Keep wrapped title lines close together. */
+    letter-spacing: -0.045em; /* Tighten the large heading. */
+}
+
+.intro-copy {
+    margin: 0.9rem 0 0; /* Keep the description close to the heading. */
+    color: var(--muted); /* Give the description less emphasis than the title. */
+    line-height: 1.5; /* Make wrapped text easier to read. */
+}
+
+.panels {
+    display: grid; /* Align the form and output as one workspace. */
+    grid-template-columns: minmax(0, 1.15fr) minmax(0, 1fr); /* Give the editor more writing room. */
+    gap: 1.25rem; /* Separate the two cards. */
+    align-items: start; /* Keep each card as tall as its content. */
+}
+
+.panel {
+    min-width: 0; /* Allow long input and results to wrap inside the grid. */
+    padding: clamp(1.1rem, 3vw, 1.75rem); /* Keep controls away from the card edges. */
+    border: 1px solid var(--border); /* Define the edge of the card. */
+    border-radius: 1.1rem; /* Soften the corners of the two panels. */
+    background: #fff; /* Give the form and results their own surfaces. */
+    box-shadow: 0 6px 22px #263e7510; /* Lift the cards slightly from the page. */
+}
+
+h2 {
+    margin: 0 0 1.25rem; /* Separate panel titles from their content. */
+    font-size: 1.25rem; /* Make panel titles smaller than the page heading. */
+}
+
+label {
+    display: block; /* Keep each label above or beside its control. */
+    font-size: 0.9375rem; /* Keep field labels compact. */
+    font-weight: 700; /* Distinguish field names from entered text. */
+}
+
+select, textarea, button {
+    font: inherit; /* Match the rest of the interface. */
+}
+
+select, textarea {
+    width: 100%; /* Use the available writing and selection space. */
+    border: 1px solid #abb7cf; /* Give input controls a visible boundary. */
+    border-radius: 0.55rem; /* Match the shape of the action buttons. */
+    color: inherit; /* Keep text at the page's main contrast level. */
+    background: #fbfcff; /* Distinguish editable fields from the card. */
+}
+
+select {
+    min-height: 2.75rem; /* Provide a usable touch and keyboard target. */
+    margin-top: 0.45rem; /* Connect the dropdown to its label. */
+    padding: 0.5rem 0.75rem; /* Keep the category text clear of the border. */
+}
+
+.input-heading, .actions {
+    display: flex; /* Group nearby controls without fixing their widths. */
+    align-items: center; /* Align labels and buttons when they share a row. */
+    flex-wrap: wrap; /* Let controls move to a new line on narrow screens. */
+    gap: 0.65rem; /* Keep adjacent controls easy to distinguish. */
+}
+
+.input-heading {
+    justify-content: space-between; /* Put the example action near the text field. */
+    margin-top: 1rem; /* Separate the text field from the category dropdown. */
+}
+
+textarea {
+    display: block; /* Remove the inline baseline gap below the input. */
+    min-height: 10rem; /* Leave room for a multiline example. */
+    padding: 0.8rem; /* Give the entered text space from the border. */
+    resize: vertical; /* Let users increase the writing area without breaking the layout. */
+    line-height: 1.55; /* Keep multiple input lines readable. */
+}
+
+.actions {
+    margin-top: 1rem; /* Separate analysis actions from the input field. */
+}
+
+button {
+    min-height: 2.75rem; /* Keep buttons large enough for touch. */
+    padding: 0.5rem 1rem; /* Balance text within each button. */
+    border: 1px solid transparent; /* Reserve room for outlines on secondary controls. */
+    border-radius: 0.55rem; /* Match the input controls. */
+    font-weight: 700; /* Distinguish actions from body text. */
+    cursor: pointer; /* Indicate that enabled buttons are interactive. */
+}
+
+.primary {
+    color: #fff; /* Keep the main action label readable on indigo. */
+    background: var(--accent); /* Emphasize the Extract action. */
+}
+
+.primary:hover:not(:disabled) {
+    background: #233693; /* Show the hover state of the main action. */
+}
+
+.secondary {
+    color: var(--accent); /* Connect Validate to the primary palette. */
+    background: #fff; /* Preserve the button hierarchy. */
+    border-color: #aeb9df; /* Give Validate a visible outline. */
+}
+
+.example {
+    padding-inline: 0.25rem; /* Keep the example button aligned with the editor edge. */
+    color: var(--accent); /* Identify this inline action. */
+    background: transparent; /* Let the text carry the action. */
+    font-size: 0.875rem; /* Keep this action smaller than Extract and Validate. */
+    text-decoration: underline; /* Distinguish the action without depending on color. */
+    text-underline-offset: 0.2em; /* Keep the underline clear of the letters. */
+}
+
+button:disabled {
+    opacity: 0.55; /* Show when an action is unavailable. */
+    cursor: default; /* Use the regular cursor for unavailable actions. */
+}
+
+:is(button, textarea, select):focus-visible {
+    outline: 3px solid #405deb; /* Make keyboard focus easy to see. */
+    outline-offset: 3px; /* Separate the focus ring from the control border. */
+}
+
+.results {
+    min-height: 14rem; /* Reserve space for outcomes before analysis. */
+}
+
+.status {
+    margin: 0; /* Fit the status directly below its heading. */
+    padding: 0.85rem; /* Give status text space inside its background. */
+    border-radius: 0.55rem; /* Match the adjacent controls. */
+    color: var(--muted); /* Present neutral feedback with readable contrast. */
+    background: #f2f5fb; /* Identify the result message area. */
+    line-height: 1.5; /* Make multiline feedback easy to read. */
+}
+
+.status[data-kind="success"] {
+    color: #185342; /* Distinguish successful results with dark green text. */
+    background: #e8f6ef; /* Keep the success message visible. */
+}
+
+.status[data-kind="error"] {
+    color: #872b3d; /* Show errors with readable dark red text. */
+    background: #fff0f2; /* Separate error feedback from normal outcomes. */
+}
+
+.match-list {
+    padding-left: 1.35rem; /* Leave space for the list markers. */
+    overflow-wrap: anywhere; /* Fit even long URLs inside the card. */
+    font-family: "IBM Plex Mono", ui-monospace, monospace; /* Make extracted values easy to inspect. */
+    font-size: 0.875rem; /* Keep long values readable in the results column. */
+    line-height: 1.65; /* Separate adjacent matches. */
+}
+
+@media (max-width: 48rem) {
+    .panels {
+        grid-template-columns: minmax(0, 1fr); /* Stack the cards on narrow screens. */
+    }
+}
