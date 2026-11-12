@@ -41,15 +41,17 @@ def analyze():  # Validate the request before calling the regex engine.
     category = payload["category"]  # Read the selected category.
     action = payload["action"]  # Read the requested operation.
     text = payload["text"]  # Keep the original text for extraction.
-    if category not in PATTERNS:  # Check the supported category keys.
-        return jsonify(error="Unsupported category. Choose email, url, phone, time, or hashtag."), 400  # List valid keys.
+    if category not in PATTERNS and category != "all":  # Accept a single pattern or Scan All.
+        return jsonify(error="Unsupported category. Choose email, url, phone, time, hashtag, or all."), 400  # List valid keys.
     if action not in ("validate", "extract"):  # Allow only the two analyzer actions.
         return jsonify(error="Unsupported action. Choose validate or extract."), 400  # List valid actions.
+    if action == "validate" and category == "all":  # Validation needs a single pattern.
+        return jsonify(error="Choose one category to validate."), 400  # Explain the valid combination.
     if not text.strip():  # Reject input made entirely of whitespace.
         return jsonify(error="Input text cannot be blank."), 400  # Give the user a correction.
 
     if action == "validate":  # Check whether the whole trimmed value matches.
         return jsonify(category=category, action=action, valid=validate(category, text))  # Return a Boolean result.
 
-    matches = [{"value": value} for value in extract(category, text)]  # Keep matches in source order.
+    matches = extract(category, text)  # Collect values and character offsets from the regex engine.
     return jsonify(category=category, action=action, matches=matches)  # Return an empty list when no matches exist.

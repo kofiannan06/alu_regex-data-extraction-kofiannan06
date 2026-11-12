@@ -101,6 +101,13 @@ select {
     padding: 0.5rem 0.75rem; /* Keep the category text clear of the border. */
 }
 
+.hint {
+    margin: 0.5rem 0 0; /* Keep the Scan All explanation beside the category control. */
+    color: var(--muted); /* Style the explanation as help text. */
+    font-size: 0.875rem; /* Keep the hint subordinate to the field label. */
+    line-height: 1.5; /* Give wrapped guidance room to breathe. */
+}
+
 .input-heading, .actions {
     display: flex; /* Group nearby controls without fixing their widths. */
     align-items: center; /* Align labels and buttons when they share a row. */
@@ -192,11 +199,92 @@ button:disabled {
 }
 
 .match-list {
+    margin-block: 0.5rem 0; /* Keep each list close to its category. */
     padding-left: 1.35rem; /* Leave space for the list markers. */
     overflow-wrap: anywhere; /* Fit even long URLs inside the card. */
     font-family: "IBM Plex Mono", ui-monospace, monospace; /* Make extracted values easy to inspect. */
     font-size: 0.875rem; /* Keep long values readable in the results column. */
     line-height: 1.65; /* Separate adjacent matches. */
+}
+
+.status + div > .match-list:first-child {
+    margin-top: 1rem; /* Give a single-category list space below the status. */
+}
+
+.group-heading {
+    display: flex; /* Align the category label with its count. */
+    justify-content: space-between; /* Place the count at the right edge. */
+    gap: 0.75rem; /* Keep the label and count apart on small screens. */
+    margin: 0.9rem 0 0; /* Separate adjacent categories. */
+    padding-top: 0.8rem; /* Give the heading room below its rule. */
+    border-top: 1px solid var(--border); /* Separate each group visually. */
+    font-size: 0.95rem; /* Keep group headings smaller than the panel title. */
+}
+
+.group-heading span {
+    color: var(--muted); /* Keep counts visible and secondary to category names. */
+    font-size: 0.875rem; /* Make the count compact. */
+    font-weight: 500; /* Distinguish the count from the category name. */
+}
+
+.preview {
+    margin-top: 1.25rem; /* Use the same gap as the upper panels. */
+}
+
+.legend {
+    display: flex; /* Lay out category labels as a compact legend. */
+    flex-wrap: wrap; /* Keep legend entries within narrow screens. */
+    gap: 0.45rem; /* Separate adjacent category labels. */
+    margin: 0 0 1rem; /* Put space between the legend and text. */
+    padding: 0; /* Align the legend with the preview. */
+    list-style: none; /* Use labeled swatches instead of bullets. */
+}
+
+.legend li {
+    padding: 0.25rem 0.55rem; /* Make each color swatch large enough to distinguish. */
+    border-radius: 0.3rem; /* Match the shape of the marks. */
+    font-size: 0.875rem; /* Keep category names readable. */
+    font-weight: 700; /* Emphasize labels so the legend works without color. */
+}
+
+.preview-text {
+    margin: 0; /* Align the text with the preview panel. */
+    padding: 1rem; /* Separate the text from the edge of the preview. */
+    border: 1px solid var(--border); /* Distinguish the preview surface. */
+    border-radius: 0.55rem; /* Match the text area above. */
+    background: #fbfcff; /* Keep plain text and colored marks legible. */
+    font: 0.9rem/1.8 "IBM Plex Mono", ui-monospace, monospace; /* Use a readable code face. */
+    white-space: pre-wrap; /* Preserve the original line breaks and spaces. */
+    overflow-wrap: anywhere; /* Wrap long unbroken strings within the panel. */
+}
+
+mark {
+    border-radius: 0.2rem; /* Soften the ends without changing text spacing. */
+}
+
+[data-category="email"] {
+    color: #162e77; /* Use dark blue text over the email highlight. */
+    background: #dce6ff; /* Pair email marks and their legend entry with blue. */
+}
+
+[data-category="url"] {
+    color: #4b2577; /* Use dark purple text over the URL highlight. */
+    background: #eee0ff; /* Pair URL marks and their legend entry with purple. */
+}
+
+[data-category="phone"] {
+    color: #175044; /* Use dark green text over the phone highlight. */
+    background: #d5f4e6; /* Pair phone marks and their legend entry with mint. */
+}
+
+[data-category="time"] {
+    color: #6b410b; /* Use dark amber text over the time highlight. */
+    background: #ffedc2; /* Pair time marks and their legend entry with amber. */
+}
+
+[data-category="hashtag"] {
+    color: #78284a; /* Use dark rose text over the hashtag highlight. */
+    background: #ffe2ee; /* Pair hashtag marks and their legend entry with pink. */
 }
 
 @media (max-width: 48rem) {
