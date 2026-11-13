@@ -6,6 +6,16 @@ This individual ALCHE Formative One project validates and extracts email address
 - **Extract** uses `finditer()` on the original text and returns matches in source order. Select **All categories** to run the five patterns over the same input and see a count for each category.
 - The **Highlighted preview** preserves the original text and line breaks. Overlapping matches still appear in the results. In the preview, the earliest start wins. If two starts are equal, the longer match wins.
 
+## Screenshots
+
+**Analyzer page template** (`templates/index.html`)
+
+![VS Code showing the analyzer page template and category selector](docs/screenshots/analyzer-template.png)
+
+**Flask routes and request validation** (`app.py`)
+
+![VS Code showing the Flask homepage and analysis routes](docs/screenshots/flask-routes.png)
+
 ## Run locally in Windows Git Bash
 
 Install Python 3.10 or newer and open Git Bash in the project folder.
